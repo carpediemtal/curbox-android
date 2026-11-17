@@ -167,10 +167,6 @@ class AllAppsUsageFragment : Fragment() {
             binding.appUsageRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             binding.appUsageRecyclerView.adapter = adapter
 
-            binding.langowageLink.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://langowage.site")))
-            }
-
 
             observeViewModel(adapter)
 
@@ -358,14 +354,6 @@ class AllAppsUsageFragment : Fragment() {
             binding.welcomeAscii.setAsciiArt("ascii_hello")
             binding.btnReadDocs.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://curbox.app/docs")))
-            }
-
-            binding.btnStarRepo.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nethical6/curbox")))
-            }
-
-            binding.btnJoinDiscord.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.com/invite/Vs9mwUtuCN")))
             }
         }
 

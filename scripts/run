@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export JAVA_HOME="$project_root/build/tools/jdk-21"
+export ANDROID_HOME="$project_root/build/tools/sdk"
+export ANDROID_USER_HOME="$project_root/build/tools/android-user"
+export GRADLE_USER_HOME="$project_root/build/tools/gradle"
+export PATH="$JAVA_HOME/bin:$project_root/build/tools/windows-platform-tools:$ANDROID_HOME/platform-tools:$PATH"
+export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:+$JAVA_TOOL_OPTIONS }-Djavax.net.ssl.trustStore=$project_root/build/tools/cacerts -Djava.util.prefs.userRoot=$project_root/build/tools/java-prefs"
+cd "$project_root"
+exec "$@"

@@ -1120,4 +1120,7 @@
         <item quantity="one">%d notification waited for this time.</item>
         <item quantity="other">%d notifications waited for this time.</item>
     </plurals>
+    <string name="diy_tools">Tools</string>
+    <string name="diy_source_code">Source code and license</string>
+    <string name="diy_license_credit">Curbox DIY is based on Curbox by Nethical and contributors. Licensed under GNU GPL version 3 or later.</string>
 </resources>

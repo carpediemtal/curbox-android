@@ -19,3 +19,7 @@ local.properties
 agents.md
 AGENT.md
 /local
+/references/*.tar
+*.apk
+*.jks
+*.keystore

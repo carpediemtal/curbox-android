@@ -1,0 +1,21 @@
+{
+  "upstream": "https://github.com/curbox-app/curbox-android",
+  "base_commit": "09958035ab6f444b4d9ceae0627dad37221425ad",
+  "inputs": [
+    {
+      "path": "references/curbox-09958035-source.tar",
+      "bytes": 4874240,
+      "sha256": "9dac90df92eece759fbcc500dd1e8ca7be84602265b3b2463326b8c8e6f7671f"
+    },
+    {
+      "path": "build/tools/commandlinetools-linux-16111833_latest.zip",
+      "bytes": 181052239,
+      "sha256": "0877a1d048fe4a24efe2eff536ca4223f7adeb58648bb81909d33c446918cfa8"
+    },
+    {
+      "path": "build/tools/gradle-8.13-bin.zip",
+      "bytes": 136983045,
+      "sha256": "20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78"
+    }
+  ]
+}

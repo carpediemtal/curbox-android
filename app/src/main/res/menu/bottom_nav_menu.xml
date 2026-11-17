@@ -11,9 +11,9 @@
     <item
         android:id="@+id/nav_reducers"
         android:icon="@drawable/ic_reducers"
-        android:title="@string/reducers" />
+        android:title="@string/diy_tools" />
     <item
         android:id="@+id/nav_info"
-        android:icon="@drawable/ic_info"
-        android:title="@string/info" />
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/settings" />
 </menu>

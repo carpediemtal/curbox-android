@@ -37,7 +37,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import neth.iecal.curbox.utils.BlurFadeAnimator
-import neth.iecal.curbox.utils.ExtensionPromo
 
 class FragmentActivity : AppCompatActivity() {
 
@@ -68,9 +67,7 @@ class FragmentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fragment)
 
         maybeShowTermsConsent()
-        // One dialog per launch. The extension announcement follows the changelog
-        // when both are due, and the donation prompt waits for a quieter launch.
-        val showedAnnouncement = maybeShowWhatsNew() || ExtensionPromo.maybeShow(this)
+        maybeShowWhatsNew()
 
         val bottomNav = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_nav)
 
@@ -155,17 +152,6 @@ class FragmentActivity : AppCompatActivity() {
                 // Show bottom nav for main fragments
                 bottomNav.visibility = android.view.View.VISIBLE
 
-                // The last tab is "Info" on F-Droid. The Play Store build also
-                // hosts account and sync here, so it reads "Settings" instead.
-                if (!neth.iecal.curbox.BuildConfig.FDROID_VARIANT) {
-                    bottomNav.menu.findItem(R.id.nav_info)?.apply {
-                        title = getString(R.string.settings)
-                        setIcon(R.drawable.baseline_settings_24)
-                    }
-                }
-
-                if (!showedAnnouncement) neth.iecal.curbox.utils.DonationPrompt.maybeShow(this)
-
                 if (savedInstanceState == null) {
                     bottomNav.selectedItemId = R.id.nav_usage
                     showTab(R.id.nav_usage, commitNow = true)
@@ -233,7 +219,6 @@ class FragmentActivity : AppCompatActivity() {
             .setTitle(R.string.whats_new_title)
             .setMessage(changelog)
             .setPositiveButton(R.string.whats_new_dismiss, null)
-            .setOnDismissListener { if (!isFinishing) ExtensionPromo.maybeShow(this) }
             .show()
         return true
     }

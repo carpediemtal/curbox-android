@@ -54,7 +54,6 @@ class InfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.textAppVersion.text = getString(R.string.app_version, BuildConfig.VERSION_NAME)
-        setupAccountSection()
         setupUsageTrackingSettings()
         setupClickListeners()
         setupBackup()
@@ -108,63 +107,18 @@ class InfoFragment : Fragment() {
         }
     }
 
-    // Sync removed; keep account section hidden.
-    private fun setupAccountSection() {
-        binding.cardAccount.visibility = View.GONE
-    }
-
     private fun setupClickListeners() {
         binding.btnDocs.setOnClickListener {
             openUrl("https://curbox.app/docs/")
         }
 
-        binding.btnSupport.setOnClickListener {
-            openUrl("https://github.com/nethical6")
-        }
-
-        binding.cardContributors.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_holder, ContributorsFragment())
-                .addToBackStack(null)
-                .commit()
-        }
-
-        binding.btnDonate.setOnClickListener {
-            openUrl("https://curbox.app/donate")
-        }
-
-        binding.btnShare.setOnClickListener {
-            shareProject()
-        }
-
-        binding.cardDiscord.setOnClickListener {
-            // Replace with actual Discord invite link
-            openUrl("https://discord.com/invite/Vs9mwUtuCN")
-        }
-
-        binding.cardInstagram.setOnClickListener {
-            openUrl("https://instagram.com/curbox.app")
-        }
-
-        binding.cardGithub.setOnClickListener {
-            openUrl("https://github.com/curbox-app/curbox-android")
-        }
-
-        binding.cardBrowserExtension.setOnClickListener {
-            openUrl("https://github.com/curbox-app/curbox-extension")
+        binding.btnSource.setOnClickListener {
+            openUrl("https://github.com/carpediemtal/curbox-android")
         }
 
         binding.btnActionCrashLogs.setOnClickListener {
             showCrashLogs()
         }
-    }
-
-    private fun shareProject() {
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, getString(R.string.share_curbox_message))
-        }
-        startActivity(Intent.createChooser(intent, null))
     }
 
     private fun openUrl(url: String) {

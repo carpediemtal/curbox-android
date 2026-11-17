@@ -10,6 +10,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_holder"
+        android:layout_above="@id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,9 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?attr/colorSurfaceContainer"
-        app:elevation="8dp"
+        app:elevation="0dp"
         app:itemIconSize="24dp"
-        app:itemPaddingTop="16dp"
+        app:itemPaddingTop="12dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 

@@ -145,7 +145,7 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
 
-            resValue("string", "app_name", "Debug Curbox")
+            resValue("string", "app_name", "Curbox DIY")
         }
     }
     compileOptions {

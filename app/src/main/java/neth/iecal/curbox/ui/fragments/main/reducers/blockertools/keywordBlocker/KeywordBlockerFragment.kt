@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import neth.iecal.curbox.R
@@ -114,7 +114,7 @@ class KeywordBlockerFragment : Fragment() {
             val tvName: TextView = view.findViewById(R.id.tv_group_name)
             val tvDetails: TextView = view.findViewById(R.id.tv_group_details)
             val tvRemaining: TextView = view.findViewById(R.id.tv_group_remaining)
-            val switchActive: SwitchMaterial = view.findViewById(R.id.switch_group_active)
+            val switchActive: MaterialSwitch = view.findViewById(R.id.switch_group_active)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
