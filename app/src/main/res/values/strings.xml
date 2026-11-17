@@ -142,6 +142,10 @@
     <string name="schedule_summary_custom">Custom schedule</string>
     <string name="schedule_overlap_not_saved">Overlapping time ranges were not saved</string>
     <string name="schedule_no_room_for_range">No room for another time range</string>
+    <string name="schedule_copy_to_days">Copy to days</string>
+    <string name="schedule_copy_title">Copy time ranges from %1$s</string>
+    <string name="schedule_copy_description">Choose days to turn on with these time ranges. Their existing ranges will be replaced.</string>
+    <string name="schedule_copy_action">Copy</string>
     <string name="schedule_conflict_title">Schedule conflict</string>
     <string name="schedule_conflict_item">These apps are also in %2$s during the same time: %1$s. Both rules will apply.</string>
     <string name="schedule_conflict_edit_apps">Edit apps</string>

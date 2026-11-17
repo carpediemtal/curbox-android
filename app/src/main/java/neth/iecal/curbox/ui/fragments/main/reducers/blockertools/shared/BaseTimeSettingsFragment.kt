@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButtonToggleGroup
+import com.google.android.material.checkbox.MaterialCheckBox
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import neth.iecal.curbox.R
@@ -21,6 +25,7 @@ import neth.iecal.curbox.data.models.fixOvernightInterval
 import neth.iecal.curbox.ui.fragments.main.reducers.blockertools.DayAdapter
 import neth.iecal.curbox.ui.fragments.main.reducers.blockertools.DayItem
 import neth.iecal.curbox.ui.fragments.main.reducers.blockertools.TimeIntervalAdapter
+import neth.iecal.curbox.ui.fragments.main.reducers.blockertools.copyDayTimeRanges
 import neth.iecal.curbox.utils.hasOverlappingTimeRanges
 import neth.iecal.curbox.utils.isAllDaySchedule
 
@@ -50,6 +55,7 @@ abstract class BaseTimeSettingsFragment : BottomSheetDialogFragment() {
 
     private val dayItems = mutableListOf<DayItem>()
     private lateinit var daysAdapter: DayAdapter
+    private var copyDaysDialog: AlertDialog? = null
 
     protected abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup?): View
     protected abstract fun getTimeConfig(): AppTimeConfig
@@ -138,10 +144,50 @@ abstract class BaseTimeSettingsFragment : BottomSheetDialogFragment() {
             },
             onDisabledClick = {
                 Toast.makeText(requireContext(), R.string.time_disable_everyday_granular, Toast.LENGTH_SHORT).show()
-            }
+            },
+            onCopyDay = ::showCopyDayDialog
         )
         daysListContainer.layoutManager = LinearLayoutManager(requireContext())
         daysListContainer.adapter = daysAdapter
+    }
+
+    private fun showCopyDayDialog(source: DayItem) {
+        if (!daysAdapter.isInteractionEnabled || !source.isActive || source.intervals.isEmpty()) return
+        copyDaysDialog?.dismiss()
+        val builder = MaterialAlertDialogBuilder(requireContext())
+        val content = LayoutInflater.from(builder.context).inflate(R.layout.dialog_copy_day_ranges, null)
+        val choices = content.findViewById<LinearLayout>(R.id.copy_day_choices)
+        val targets = dayItems.filter { it.dayIndex != source.dayIndex }
+        val selected = mutableSetOf<Int>()
+        val dialog = builder
+            .setTitle(getString(R.string.schedule_copy_title, source.name))
+            .setView(content)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.schedule_copy_action) { _, _ ->
+                copyDayTimeRanges(source, targets.filter { it.dayIndex in selected })
+                daysAdapter.notifyDataSetChanged()
+            }
+            .create()
+        targets.forEach { target ->
+            choices.addView(MaterialCheckBox(builder.context).apply {
+                text = target.name
+                setOnCheckedChangeListener { _, checked ->
+                    if (checked) selected.add(target.dayIndex) else selected.remove(target.dayIndex)
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = selected.isNotEmpty()
+                }
+            })
+        }
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
+        }
+        dialog.setOnDismissListener { copyDaysDialog = null }
+        copyDaysDialog = dialog
+        dialog.show()
+    }
+
+    override fun onDestroyView() {
+        copyDaysDialog?.dismiss()
+        super.onDestroyView()
     }
 
     private fun loadExistingSettings() {

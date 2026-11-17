@@ -43,6 +43,14 @@
         android:text="@string/add_time_range"
         app:icon="@drawable/baseline_add_24" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_copy_day"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="0dp"
+        android:text="@string/schedule_copy_to_days" />
+
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
