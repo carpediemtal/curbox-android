@@ -35,6 +35,16 @@ The delivery app is **Curbox DIY**, `neth.iecal.curbox.debug`. It has separate d
 
 After initial setup, check the Settings and Tools screens, then copy Monday's ranges to Tuesday–Friday, save and reopen the group. Change Tuesday and verify Monday/Wednesday remain independent; cancel a copy and verify no destinations change. Check disabled destinations and replacement of existing ranges, light/dark appearance, large text, and scrolling above navigation.
 
+## Migration progress (2026-11-18)
+
+The user authorized configuring Curbox DIY first and removing official Curbox only after the replacement works. Official Curbox's in-app backup was exported to `Download/curbox_settings_2026-11-18.json` on the phone, with a private local copy at `build/migration/official-settings-2026-11-18.json`. Its SHA256 is registered in `local-inputs.json`; settings contents are not committed. The user was informed that usage history is excluded and will be lost with removal of the old app.
+
+The backup restored successfully through Curbox DIY's onboarding restore flow. It contains one group and nine selected apps. Comparison of all existing settings fields passed; the new version only adds default `autoAddNewApps=false` and `autoAddCheckedUntilMs=0` fields to the group.
+
+Notifications, overlays, Xiaomi background windows, autostart, and Android battery exemption are enabled for the DIY package. Xiaomi's battery UI shows No restrictions selected. Accessibility was added while preserving the original service and all unrelated enabled services. Both Curbox services were bound without crashes at inspection time.
+
+Migration is paused at Xiaomi's installed-app information permission dialog, which ignores injected taps. The user was asked to physically tap Always allow. Remaining: finish onboarding, apply Monday's three time ranges to Tuesday through Friday using Copy to days, verify saved settings, disable the old service and test the new blocker alone, then uninstall official Curbox. The old app remains installed and enabled. No migration success or new blocking verification is claimed yet.
+
 ## GitHub ownership
 
 The intended repository is https://github.com/carpediemtal/curbox-android. Git uses the existing `github-carpediemtal` SSH identity and repository-local commit identity. The wrong-account fork at `acore2026/curbox-android` was created in the preceding task; its deletion was requested but GitHub rejected the API call with HTTP 403 because the stored token lacks `delete_repo`. On 2026-11-18 the user said they will remove the old fork themselves. No further deletion attempts are planned; removal has not been independently verified.
