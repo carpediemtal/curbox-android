@@ -29,12 +29,12 @@ Known baseline: the earlier full F-Droid suite had 198 tests with one failure in
 
 ## Device status
 
-ADB repeatedly reported no connected device during this work. Installation, visual checks on Xiaomi 15, schedule-copy UI testing, and blocking verification remain pending. No phone data or permission settings were changed. The user was asked to reconnect and unlock the phone.
+On 2026-11-18, the F-Droid DIY APK was installed successfully on Xiaomi 15 running Android 16. ADB reported `Success`; package manager confirmed `neth.iecal.curbox.debug`, version `7-fdroid-debug` (code 7). Launch returned `Status: ok`, and the app process and resumed activity were confirmed. The original `neth.iecal.curbox` package remains installed. No original app data or permission settings were changed. Visual review, schedule-copy UI testing, and blocking verification remain pending.
 
 The delivery app is **Curbox DIY**, `neth.iecal.curbox.debug`. It has separate data and permissions from official Curbox. Preserve the official installation and do not enable strict mode while validating the DIY build.
 
-After connection, install the F-Droid delivery APK and launch it. Check the Settings and Tools screens, then copy Monday's ranges to Tuesday–Friday, save and reopen the group. Change Tuesday and verify Monday/Wednesday remain independent; cancel a copy and verify no destinations change. Check disabled destinations and replacement of existing ranges, light/dark appearance, large text, and scrolling above navigation.
+After initial setup, check the Settings and Tools screens, then copy Monday's ranges to Tuesday–Friday, save and reopen the group. Change Tuesday and verify Monday/Wednesday remain independent; cancel a copy and verify no destinations change. Check disabled destinations and replacement of existing ranges, light/dark appearance, large text, and scrolling above navigation.
 
 ## GitHub ownership
 
-The intended repository is https://github.com/carpediemtal/curbox-android. Git uses the existing `github-carpediemtal` SSH identity and repository-local commit identity. The wrong-account fork at `acore2026/curbox-android` was created in the preceding task; its deletion was requested but GitHub rejected the API call with HTTP 403 because the stored token lacks `delete_repo`. Manual deletion was requested from the user; it has not yet been confirmed.
+The intended repository is https://github.com/carpediemtal/curbox-android. Git uses the existing `github-carpediemtal` SSH identity and repository-local commit identity. The wrong-account fork at `acore2026/curbox-android` was created in the preceding task; its deletion was requested but GitHub rejected the API call with HTTP 403 because the stored token lacks `delete_repo`. On 2026-11-18 the user said they will remove the old fork themselves. No further deletion attempts are planned; removal has not been independently verified.
